@@ -17,7 +17,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      
+
       font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
       font-size: 10vmin;
       color: #ddd;
@@ -89,7 +89,7 @@
       left: 1em;
       width: 0;
       height: 1em;
-      border-left: 0.025em solid black
+      border-left: 0.025em solid #222;
     }
 
     div.line2 {
@@ -192,6 +192,27 @@
     #b9:checked ~ [for=b0] {
       z-index: 1
     }
+
+    .over {
+      position: absolute;
+      top: -6em;
+      text-align: center;
+      width: 120%;
+      margin-left: -10%;
+      background-color: #222d;
+      padding: 4em 0 2em;
+      opacity: 0;
+      z-index: 0;
+      transition: opacity 5s 1s;
+    }
+
+    .red:has(#r3:checked) ~
+    .green:has(#g1:checked) ~
+    .blue:has(#b4:checked) ~
+    .win {
+      opacity: 1;
+      z-index: 2;
+    }
   </style>
 
 </head>
@@ -268,6 +289,7 @@
       <label for="b9">9<span></span></label>
       <label for="b0">0<span></span></label>
     </div>
+    <p class="win over">Ins-pi-ring!</p>
   </main>
 </body>
 </html>
