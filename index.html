@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
+  <title>Easy as Pie</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      
+      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      font-size: 10vmin;
+      color: #ddd;
+      background-color: #222;
+      user-select: none;
+    }
+
+    h1 {
+      font-size: 1em;
+      margin-top: 0;
+      margin-bottom: 3em;
+    }
+
+    main {
+      position: relative;
+      display: flex
+    }
+
+    div {
+      position: relative;
+      width: 2em;
+      height: 1.2em;
+    }
+
+    input {
+      position: absolute;
+      left: -999px;
+      width: 0;
+    }
+
+    label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      z-index: 1;
+      display: none;
+    }
+
+    div.pie,
+    span {
+      position: absolute;
+      top: -2.5em;
+      left: 2em;
+      display: inline-block;
+      width: 2em;
+      height: 2em;
+      border-radius: 2em;
+      background-color: #933;
+    }
+
+    div.green span {
+      left: 0
+    }
+
+    div.blue span {
+      left: -2em
+    }
+
+    div.pie {
+      background-color: #393;
+    }
+
+    div.line1,
+    div.line2 {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      width: 0;
+      height: 1em;
+      border-left: 0.025em solid black
+    }
+
+    div.line2 {
+      transform-origin: top left;
+      transform: rotate(-60deg);
+    }
+
+    .red label{
+      background-color: #933;
+    }
+
+    .green label{
+      background-color: #393;
+    }
+
+    .blue label{
+      background-color: #339;
+    }
+
+    #r9:checked ~ [for=r9],
+    #r8:checked ~ [for=r8],
+    #r7:checked ~ [for=r7],
+    #r6:checked ~ [for=r6],
+    #r5:checked ~ [for=r5],
+    #r4:checked ~ [for=r4],
+    #r3:checked ~ [for=r3],
+    #r2:checked ~ [for=r2],
+    #r1:checked ~ [for=r1],
+    #r0:checked ~ [for=r0],
+
+    #g9:checked ~ [for=g9],
+    #g8:checked ~ [for=g8],
+    #g7:checked ~ [for=g7],
+    #g6:checked ~ [for=g6],
+    #g5:checked ~ [for=g5],
+    #g4:checked ~ [for=g4],
+    #g3:checked ~ [for=g3],
+    #g2:checked ~ [for=g2],
+    #g1:checked ~ [for=g1],
+    #g0:checked ~ [for=g0],
+
+    #b9:checked ~ [for=b9],
+    #b8:checked ~ [for=b8],
+    #b7:checked ~ [for=b7],
+    #b6:checked ~ [for=b6],
+    #b5:checked ~ [for=b5],
+    #b4:checked ~ [for=b4],
+    #b3:checked ~ [for=b3],
+    #b2:checked ~ [for=b2],
+    #b1:checked ~ [for=b1],
+    #b0:checked ~ [for=b0] {
+      display: block;
+      opacity: 1;
+    }
+
+    #r9:checked ~ [for=r0],
+    #r8:checked ~ [for=r9],
+    #r7:checked ~ [for=r8],
+    #r6:checked ~ [for=r7],
+    #r5:checked ~ [for=r6],
+    #r4:checked ~ [for=r5],
+    #r3:checked ~ [for=r4],
+    #r2:checked ~ [for=r3],
+    #r1:checked ~ [for=r2],
+    #r0:checked ~ [for=r1],
+
+    #g9:checked ~ [for=g0],
+    #g8:checked ~ [for=g9],
+    #g7:checked ~ [for=g8],
+    #g6:checked ~ [for=g7],
+    #g5:checked ~ [for=g6],
+    #g4:checked ~ [for=g5],
+    #g3:checked ~ [for=g4],
+    #g2:checked ~ [for=g3],
+    #g1:checked ~ [for=g2],
+    #g0:checked ~ [for=g1],
+
+    #b9:checked ~ [for=b0],
+    #b8:checked ~ [for=b9],
+    #b7:checked ~ [for=b8],
+    #b6:checked ~ [for=b7],
+    #b5:checked ~ [for=b6],
+    #b4:checked ~ [for=b5],
+    #b3:checked ~ [for=b4],
+    #b2:checked ~ [for=b3],
+    #b1:checked ~ [for=b2],
+    #b0:checked ~ [for=b1] {
+      display: block;
+      opacity: 0;
+    }
+
+    [for=r0],
+    [for=g0],
+    [for=b0] {
+      z-index: 0;
+    }
+
+    #r9:checked ~ [for=r0],
+    #g9:checked ~ [for=g0],
+    #b9:checked ~ [for=b0] {
+      z-index: 1
+    }
+  </style>
+
+</head>
+<body>
+  <h1>As Easy as Pie</h1>
+  <main>
+    <div class="pie">
+      <div class="line1"></div>
+      <div class="line2"></div>
+    </div>
+    <div class="red">
+      <input type="radio" name="red" id="r0" checked>
+      <input type="radio" name="red" id="r1">
+      <input type="radio" name="red" id="r2">
+      <input type="radio" name="red" id="r3">
+      <input type="radio" name="red" id="r4">
+      <input type="radio" name="red" id="r5">
+      <input type="radio" name="red" id="r6">
+      <input type="radio" name="red" id="r7">
+      <input type="radio" name="red" id="r8">
+      <input type="radio" name="red" id="r9">
+      <label for="r1">1<span></span></label>
+      <label for="r2">2<span></span></label>
+      <label for="r3">3</label>
+      <label for="r4">4<span></span></label>
+      <label for="r5">5<span></span></label>
+      <label for="r6">6<span></span></label>
+      <label for="r7">7<span></span></label>
+      <label for="r8">8<span></span></label>
+      <label for="r9">9<span></span></label>
+      <label for="r0">0<span></span></label>
+    </div>
+    <div class="green">
+      <input type="radio" name="green" id="g0" checked>
+      <input type="radio" name="green" id="g1">
+      <input type="radio" name="green" id="g2">
+      <input type="radio" name="green" id="g3">
+      <input type="radio" name="green" id="g4">
+      <input type="radio" name="green" id="g5">
+      <input type="radio" name="green" id="g6">
+      <input type="radio" name="green" id="g7">
+      <input type="radio" name="green" id="g8">
+      <input type="radio" name="green" id="g9">
+      <label for="g1">1</label>
+      <label for="g2">2<span></span></label>
+      <label for="g3">3<span></span></label>
+      <label for="g4">4<span></span></label>
+      <label for="g5">5<span></span></label>
+      <label for="g6">6<span></span></label>
+      <label for="g7">7<span></span></label>
+      <label for="g8">8<span></span></label>
+      <label for="g9">9<span></span></label>
+      <label for="g0">0<span></span></label>
+    </div>
+    <div class="blue">
+      <input type="radio" name="blue" id="b0" checked>
+      <input type="radio" name="blue" id="b1">
+      <input type="radio" name="blue" id="b2">
+      <input type="radio" name="blue" id="b3">
+      <input type="radio" name="blue" id="b4">
+      <input type="radio" name="blue" id="b5">
+      <input type="radio" name="blue" id="b6">
+      <input type="radio" name="blue" id="b7">
+      <input type="radio" name="blue" id="b8">
+      <input type="radio" name="blue" id="b9">
+      <label for="b1">1<span></span></label>
+      <label for="b2">2<span></span></label>
+      <label for="b3">3<span></span></label>
+      <label for="b4">4</label>
+      <label for="b5">5<span></span></label>
+      <label for="b6">6<span></span></label>
+      <label for="b7">7<span></span></label>
+      <label for="b8">8<span></span></label>
+      <label for="b9">9<span></span></label>
+      <label for="b0">0<span></span></label>
+    </div>
+  </main>
+</body>
+</html>
