@@ -8,6 +8,24 @@
   <title>Easy as Pie</title>
 
   <style>
+    :root {
+      --width: 2em;
+      --height: 1.2em;
+      --back: calc(-1 * var(--width));
+      --up: -2.5em;
+      --red: #933;
+      --green: #393;
+      --blue: #339;
+      --redder: #900;
+      --light: #ddd;
+      --dark: #222;
+      --mask: #222d;
+      --time: #f006;
+      /* @keyframe countdown is hard-coded to use 50 seconds */
+      --seconds: 50;
+      --timer: calc(1s * var(--seconds));
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -18,10 +36,10 @@
       justify-content: center;
       align-items: center;
 
-      font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+      font-family: Helvetica, Arial, sans-serif;
       font-size: 10vmin;
-      color: #ddd;
-      background-color: #222;
+      color: var(--light);
+      background-color: var(--dark);
       user-select: none;
     }
 
@@ -38,8 +56,8 @@
 
     div {
       position: relative;
-      width: 2em;
-      height: 1.2em;
+      width: var(--width);
+      height: var(--height);
     }
 
     input {
@@ -61,13 +79,13 @@
     div.pie,
     span {
       position: absolute;
-      top: -2.5em;
-      left: 2em;
+      top: var(--up);
+      left: var(--width);
       display: inline-block;
-      width: 2em;
-      height: 2em;
-      border-radius: 2em;
-      background-color: #933;
+      width: var(--width);
+      height: var(--width);
+      border-radius: var(--width);
+      background-color: var(--red);
     }
 
     div.green span {
@@ -75,11 +93,11 @@
     }
 
     div.blue span {
-      left: -2em
+      left: var(--back)
     }
 
     div.pie {
-      background-color: #393;
+      background-color: var(--green);
     }
 
     div.line1,
@@ -89,7 +107,7 @@
       left: 1em;
       width: 0;
       height: 1em;
-      border-left: 0.025em solid #222;
+      border-left: 0.025em solid var(--dark);
     }
 
     div.line2 {
@@ -98,15 +116,15 @@
     }
 
     .red label{
-      background-color: #933;
+      background-color: var(--red);
     }
 
     .green label{
-      background-color: #393;
+      background-color: var(--green);
     }
 
     .blue label{
-      background-color: #339;
+      background-color: var(--blue);
     }
 
     #r9:checked ~ [for=r9],
@@ -193,17 +211,62 @@
       z-index: 1
     }
 
-    .over {
+    .win {
       position: absolute;
       top: -6em;
       text-align: center;
       width: 120%;
       margin-left: -10%;
-      background-color: #222d;
+      background-color: var(--mask);
       padding: 4em 0 2em;
       opacity: 0;
       z-index: 0;
       transition: opacity 5s 1s;
+    }
+
+    div.counter {
+      position: absolute;
+
+      top: var(--up);
+      left: var(--width);
+      width: 20vmin;
+      height: 20vmin;
+      border-radius: 20vmin;
+      z-index: 1;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow: hidden;
+      pointer-events: none;
+
+      counter-reset: my-count var(--seconds);
+    }
+
+    div.counter::before {
+      --position: absolute;
+      --bg: var(--time);
+      --content: "";
+
+      content: var(--content);
+      text-align: center;
+      line-height: 100vh;
+      font-size: min(9vw, 100px);
+
+      position: var(--position);
+      background-color: var(--bg);
+      width: 100%;
+      bottom: 0;
+
+      animation: countdown var(--timer) linear forwards;
+    }
+
+    div.counter::after {
+      content: counter(my-count);
+      font-size: 10vmin;
+      position: relative;
+      color: var(--redder);
     }
 
     .red:has(#r3:checked) ~
@@ -212,6 +275,99 @@
     .win {
       opacity: 1;
       z-index: 2;
+    }
+
+    .red:has(#r3:checked) ~
+    .green:has(#g1:checked) ~
+    .blue:has(#b4:checked) ~
+    .counter {
+      display: none;
+    }
+
+    a {
+      position: absolute;
+      bottom: 0;
+      color: inherit;
+      opacity: 0.25;
+      font-size: 1rem;
+      z-index: 3;
+    }
+
+    a:hover {
+      opacity: 1
+    }
+
+    @keyframes countdown {
+      0%   {
+        height: 100%;
+        --content: ""
+      }
+      2%   {counter-increment: my-count -1;}
+      4%   {counter-increment: my-count -2;}
+      6%   {counter-increment: my-count -3;}
+      8%   {counter-increment: my-count -4;}
+      10%  {counter-increment: my-count -5;}
+      12%  {counter-increment: my-count -6;}
+      14%  {counter-increment: my-count -7;}
+      16%  {counter-increment: my-count -8;}
+      18%  {counter-increment: my-count -9;}
+      20%  {counter-increment: my-count -10;}
+      22%  {counter-increment: my-count -11;}
+      24%  {counter-increment: my-count -12;}
+      26%  {counter-increment: my-count -13;}
+      28%  {counter-increment: my-count -14;}
+      30%  {counter-increment: my-count -15;}
+      32%  {counter-increment: my-count -16;}
+      34%  {counter-increment: my-count -17;}
+      36%  {counter-increment: my-count -18;}
+      38%  {counter-increment: my-count -19;}
+      40%  {counter-increment: my-count -20;}
+      42%  {counter-increment: my-count -21;}
+      44%  {counter-increment: my-count -22;}
+      46%  {counter-increment: my-count -23;}
+      48%  {counter-increment: my-count -24;}
+      50%  {counter-increment: my-count -25;}
+      52%  {counter-increment: my-count -26;}
+      54%  {counter-increment: my-count -27;}
+      56%  {counter-increment: my-count -28;}
+      58%  {counter-increment: my-count -29;}
+      60%  {counter-increment: my-count -30;}
+      62%  {counter-increment: my-count -31;}
+      64%  {counter-increment: my-count -32;}
+      66%  {counter-increment: my-count -33;}
+      68%  {counter-increment: my-count -34;}
+      70%  {counter-increment: my-count -35;}
+      72%  {counter-increment: my-count -36;}
+      74%  {counter-increment: my-count -37;}
+      76%  {counter-increment: my-count -38;}
+      78%  {counter-increment: my-count -39;}
+      80%  {counter-increment: my-count -40;}
+      82%  {counter-increment: my-count -41;}
+      84%  {counter-increment: my-count -42;}
+      86%  {counter-increment: my-count -43;}
+      88%  {counter-increment: my-count -44;}
+      90%  {counter-increment: my-count -45;}
+      92%  {counter-increment: my-count -46;}
+      94%  {counter-increment: my-count -47;}
+      96%  {counter-increment: my-count -48;}
+      98%  {
+        counter-increment: my-count -49;
+        --position: absolute;
+        --bg: var(--time);
+        --content: "";
+        height: 0%;
+        z-index: 0;
+      }
+      100% {
+        counter-increment: my-count -50;
+        /* Fill the viewport and block all event */
+        height: 100%;
+        pointer-events: all;
+        z-index: 1;
+        --position: fixed;
+        --bg: #900c;
+        --content: "You ran out of time!";
+      }
     }
   </style>
 
@@ -289,7 +445,9 @@
       <label for="b9">9<span></span></label>
       <label for="b0">0<span></span></label>
     </div>
-    <p class="win over">Ins-pi-ring!</p>
+    <p class="win">Ins-pi-ring!</p>
+    <div class="counter"></div>
   </main>
+  <a href="https://github.com/funforks/pie">Source</a>
 </body>
 </html>
