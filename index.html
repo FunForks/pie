@@ -76,8 +76,7 @@
       display: none;
     }
 
-    div.pie,
-    span {
+    div.pie {
       position: absolute;
       top: var(--up);
       left: var(--width);
@@ -85,18 +84,6 @@
       width: var(--width);
       height: var(--width);
       border-radius: var(--width);
-      background-color: var(--red);
-    }
-
-    div.green span {
-      left: 0
-    }
-
-    div.blue span {
-      left: var(--back)
-    }
-
-    div.pie {
       background-color: var(--green);
     }
 
@@ -213,12 +200,12 @@
 
     .win {
       position: absolute;
-      top: -6em;
+      top: -4em;
       text-align: center;
       width: 120%;
-      margin-left: -10%;
+      margin: 0 0 0 -10%;
       background-color: var(--mask);
-      padding: 4em 0 2em;
+      padding: 3em 0 1em;
       opacity: 0;
       z-index: 0;
       transition: opacity 5s 1s;
@@ -226,6 +213,7 @@
 
     div.counter {
       position: absolute;
+      background-color: var(--red);
 
       top: var(--up);
       left: var(--width);
@@ -360,7 +348,7 @@
       }
       100% {
         counter-increment: my-count -50;
-        /* Fill the viewport and block all event */
+        /* Fill the viewport and block all events */
         height: 100%;
         pointer-events: all;
         z-index: 1;
@@ -390,16 +378,16 @@
       <input type="radio" name="red" id="r7">
       <input type="radio" name="red" id="r8">
       <input type="radio" name="red" id="r9">
-      <label for="r1">1<span></span></label>
-      <label for="r2">2<span></span></label>
+      <label for="r1">1</label>
+      <label for="r2">2</label>
       <label for="r3">3</label>
-      <label for="r4">4<span></span></label>
-      <label for="r5">5<span></span></label>
-      <label for="r6">6<span></span></label>
-      <label for="r7">7<span></span></label>
-      <label for="r8">8<span></span></label>
-      <label for="r9">9<span></span></label>
-      <label for="r0">0<span></span></label>
+      <label for="r4">4</label>
+      <label for="r5">5</label>
+      <label for="r6">6</label>
+      <label for="r7">7</label>
+      <label for="r8">8</label>
+      <label for="r9">9</label>
+      <label for="r0">0</label>
     </div>
     <div class="green">
       <input type="radio" name="green" id="g0" checked>
@@ -413,15 +401,15 @@
       <input type="radio" name="green" id="g8">
       <input type="radio" name="green" id="g9">
       <label for="g1">1</label>
-      <label for="g2">2<span></span></label>
-      <label for="g3">3<span></span></label>
-      <label for="g4">4<span></span></label>
-      <label for="g5">5<span></span></label>
-      <label for="g6">6<span></span></label>
-      <label for="g7">7<span></span></label>
-      <label for="g8">8<span></span></label>
-      <label for="g9">9<span></span></label>
-      <label for="g0">0<span></span></label>
+      <label for="g2">2</label>
+      <label for="g3">3</label>
+      <label for="g4">4</label>
+      <label for="g5">5</label>
+      <label for="g6">6</label>
+      <label for="g7">7</label>
+      <label for="g8">8</label>
+      <label for="g9">9</label>
+      <label for="g0">0</label>
     </div>
     <div class="blue">
       <input type="radio" name="blue" id="b0" checked>
@@ -434,16 +422,16 @@
       <input type="radio" name="blue" id="b7">
       <input type="radio" name="blue" id="b8">
       <input type="radio" name="blue" id="b9">
-      <label for="b1">1<span></span></label>
-      <label for="b2">2<span></span></label>
-      <label for="b3">3<span></span></label>
+      <label for="b1">1</label>
+      <label for="b2">2</label>
+      <label for="b3">3</label>
       <label for="b4">4</label>
-      <label for="b5">5<span></span></label>
-      <label for="b6">6<span></span></label>
-      <label for="b7">7<span></span></label>
-      <label for="b8">8<span></span></label>
-      <label for="b9">9<span></span></label>
-      <label for="b0">0<span></span></label>
+      <label for="b5">5</label>
+      <label for="b6">6</label>
+      <label for="b7">7</label>
+      <label for="b8">8</label>
+      <label for="b9">9</label>
+      <label for="b0">0</label>
     </div>
     <p class="win">Ins-pi-ring!</p>
     <div class="counter"></div>
